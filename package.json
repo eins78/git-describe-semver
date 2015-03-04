@@ -1,0 +1,36 @@
+{
+  "name": "git-describe-semver",
+  "version": "1.0.0-alpha.1",
+  "description": "🌿📝📦 Always get a valid SemVer from `$(git-describe --long)`",
+  "main": "git-describe-semver.js",
+  "bin": {
+    "git-describe-semver": "git-describe-semver.coffee"
+  },
+  "scripts": {
+    "test": "tests.js",
+    "build": "coffee -c git-describe-semver.coffee",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eins78/git-describe-semver"
+  },
+  "keywords": [
+    "git",
+    "semver",
+    "git-describe"
+  ],
+  "author": "Max F. Albrecht <1@178.is>",
+  "license": "Public Domain",
+  "bugs": {
+    "url": "https://github.com/eins78/git-describe-semver/issues"
+  },
+  "homepage": "https://github.com/eins78/git-describe-semver",
+  "dependencies": {
+    "minimist": "1.1.x",
+    "semver": "4.3.x"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.1"
+  }
+}
