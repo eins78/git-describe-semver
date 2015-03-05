@@ -1,2 +1,4 @@
 node_modules/
 *.js
+
+bin/git-describe-semver-cli

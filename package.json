@@ -8,7 +8,10 @@
   },
   "scripts": {
     "test": "tests.js",
-    "build": "coffee -c git-describe-semver.coffee",
+    "demo": "npm run build && ./bin/git-describe-semver-cli $(git describe --tags --always --long) --debug",
+    "build": "npm run build-coffee && npm run build-cli",
+    "build-coffee": "bash -c 'coffee -c src/{**,/}*.coffee' && mv src/git-describe-semver.js .",
+    "build-cli": "cp src/git-describe-semver-cli.tmpl bin/git-describe-semver-cli && cat src/git-describe-semver-cli.js >> bin/git-describe-semver-cli",
     "prepublish": "npm run build"
   },
   "repository": {
