@@ -48,3 +48,23 @@ Defaults to 'v', as in `v1.0.0-alpha.1`.
 ### json
 
 *Bool* `--json` switches output to JSON format.
+
+
+## Examples
+
+[madek](https://github.com/zhdk/madek)
+
+```bash
+$ git describe-semver --change=breaking "$(git describe --tags --always --long)"
+3.0.0-beta.0+g4964c59
+```
+
+[cider-ci ui](https://github.com/cider-ci/cider-ci_user-interface)
+
+```
+$ GITDESC="$(git describe --tags --always --long)"
+$ echo "$GITDESC"
+cider-ci_2.3.2-1-g87eac85
+$ git describe-semver --prefix="cider-ci_" "$GITDESC"
+2.3.3-alpha.0+g87eac85
+```
