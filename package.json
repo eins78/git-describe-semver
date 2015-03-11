@@ -1,6 +1,6 @@
 {
   "name": "git-describe-semver",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "🌿📝📦 Always get a valid SemVer from `$(git-describe --long)`",
   "main": "git-describe-semver.js",
   "bin": {

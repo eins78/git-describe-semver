@@ -9,7 +9,7 @@ debug= false # set to true with `--debug`
 
 # function to get a currently valid semver string from git-describe
 # - needs a `string` from git-describe
-# - needs to know which part of the version to `bump`
+# - wants to know which part of the version to `bump` (default: minor)
 # - *decides* it's a pre-release if it is "ahead" of a tag
 #     - bumps exisiting pre-release field if it exists or makes a new one
 # - heavy lifting (repo queries, bumping…) is done by `git` and `node-semver`
@@ -124,8 +124,9 @@ do main= ->
     when args.bump? then args.bump
     when args.change? then mapChangesToBumplevel(args.change)
 
-  console.log 'args', args
-  console.log 'describe', describe
+  # TODO: debug()
+  # console.log 'args', args
+  # console.log 'describe', describe
 
   unless describe?
     fail('missing input! hint: `--describe="1.0.0-0-g1234abcd"`')
