@@ -68,3 +68,10 @@ cider-ci_2.3.2-1-g87eac85
 $ git describe-semver --prefix="cider-ci_" "$GITDESC"
 2.3.3-alpha.0+g87eac85
 ```
+
+## Inspiration
+
+- This issue:  
+  [mojombo/semver #100: "Separate opinions from ordering logic in semver.org spec"](https://github.com/mojombo/semver/issues/100#issuecomment-91017920)
+- Also this image:  
+  !["You are technically correct. The best kind of correct."](https://cdn.rawgit.com/eins78/a48a54bc4b57e19437e7/raw/71195b6b20d67e08b54fa53edb2befb85c410eca/technically_correct_futurama.jpg)
