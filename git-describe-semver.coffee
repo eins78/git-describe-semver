@@ -23,7 +23,7 @@ semverFromGitDescribe= (gitDescription, bump = 'patch', tagPrefix)->
   input = removePrefix(gitDescription, tagPrefix, (strict= tagPrefix?))
   parsed = parseGitDescription(input, fallbackVersion)
 
-  semver = do ->
+  new_semver = do ->
     # increment if commit is ahead of tag
     return parsed.semver unless parsed.isAhead
     bumpLevel = do ->
@@ -39,16 +39,26 @@ semverFromGitDescribe= (gitDescription, bump = 'patch', tagPrefix)->
     semver(parsed.semver.raw)
       .inc(bumpLevel, preReleaseChannel)
 
-  version = "#{semver.version}+#{parsed.gitmeta}"
+  # re-parse the result to get a complete prepared object (usefull for JSON output)
+  new_semver = semver.parse("#{new_semver.version}+#{parsed.gitmeta}")
+  # new_semver = semver.parse(semverFormatFull(new_semver))
 
   return {
     raw: gitDescription
     parsed: parsed
-    SemVer: semver
-    version: version
+    SemVer: new_semver
+    version: semverFormatFull(new_semver)
   }
 
 # helpers:
+
+semverFormatFull= (semverObj)->
+  unless (typeof semverObj.format) is 'function'
+    fail('no semver object to format!')
+  res = semverObj.format()
+  if (semverObj.build?.length)
+    res += '+' + semverObj.build.join('.');
+  res
 
 parseGitDescription= (string, fallbackVersion)->
   # string must be of format 'versionFromTag-ahead-gitmeta',
@@ -136,6 +146,6 @@ do main= ->
 
   # output the result as simple string or JSON as requested
   if (args.json)
-    console.log(JSON.stringify(result, 0, 2))
+    console.log(JSON.stringify(result.SemVer, 0, 2))
   else
     console.log(result.version)
